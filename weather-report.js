@@ -1,5 +1,7 @@
 // get a free API key to use with https://api.openweathermap.org
 
+'use strict';
+
 // PREP FETCH #1
 async function getIpData(url) {
   try {
@@ -21,10 +23,10 @@ async function getWeatherData(url) {
 }
 
 function degreesFahrenheit(degrees) {
-  return degreesF = Math.round((degrees * (9 / 5)) - 459.67);
+  return degrees = Math.round((degrees * (9 / 5)) - 459.67);
 }
 function degreesCelsius(degrees) {
-  return degreesC = Math.round(degrees - 273.15);
+  return degrees = Math.round(degrees - 273.15);
 }
 
 // FETCH #1
@@ -38,14 +40,13 @@ getIpData('https://ipapi.co/json/')
   .then((data) => {
     let latitude = data.latitude;
     let longitude = data.longitude;
-    let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=<YOUR_API_KEY>`;
-    console.log(weatherUrl);
+    let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=b37913b4e13eb52a97731b364eddcb6a`;
     // FETCH #2
     getWeatherData(weatherUrl)
       .then((data) => {
         data = JSON.parse(data);
         document.getElementById('weatherDataMain')
-          .innerHTML = `${data.weather[0].main}`;
+          .innerHTML = `${data.weather[0].main}, `;
         document.getElementById('weatherDataDesc')
           .innerHTML = `(${data.weather[0].description})`;
 
